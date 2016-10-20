@@ -1,7 +1,7 @@
 #Weather app
-**Стягиваем репозиторий:**
-`git clone git@github.com:L1m0n/react_weather_app.git`
-**Затем:**
+**Стягиваем репозиторий:** <br>
+`git clone git@github.com:L1m0n/react_weather_app.git` <br>
+**Затем:** <br>
 ```
 npm i
 npm i xhr
