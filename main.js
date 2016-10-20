@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
-import './App.css';
+import ReactDOM from 'react-dom';
 import xhr from 'xhr';
 
 let url = 'http://api.openweathermap.org/data/2.5/forecast?q=CITY,COUNTRY&APPID=e72e82ac63de6dfdf0654ba239864bfa&units=metric';
 class App extends Component {
 
-  state = {
-    location: "",
-    data: {}
-  };
+  constructor(props) {
 
-  fetchData= (evt) => {
+    super(props);
+
+    this.state = {
+      location: "",
+      data: {}
+    }
+    this.changeLocation = this.changeLocation.bind(this);
+    this.fetchData = this.fetchData.bind(this);  
+  }
+
+  componentDidUpdate(){
+    console.log(11111111);
+  }
+
+  fetchData(evt){
     evt.preventDefault();
     var location = encodeURIComponent(this.state.location);
     var urlPrefix = 'http://api.openweathermap.org/data/2.5/forecast?q=';
@@ -23,15 +34,15 @@ class App extends Component {
       self.setState({
         data: JSON.parse(data.body)
       });
-      console.log(self.state.data);
     });
-  };
+  }
 
-  changeLocation = (evt) => {
+  changeLocation(evt) {
     this.setState({
       location: evt.target.value
     });
-  };
+  }
+
 
   render() {
     var currentTemp = 'not loaded yet';
@@ -62,4 +73,8 @@ class App extends Component {
 }
 
 
-export default App;
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
+
