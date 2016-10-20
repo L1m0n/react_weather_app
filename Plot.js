@@ -22,6 +22,7 @@ export default class Plot extends Component {
 			displayModeBar:false
 		}
 		);
+		document.getElementById('plot').on('plotly_click', this.props.onPlotClick);
 	}
 
 	componentDidMount() {

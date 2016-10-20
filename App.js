@@ -12,10 +12,15 @@ export default class App extends Component {
       location: "",
       data: {},
       dates:[],
-      temps:[]
+      temps:[],
+      selected: {
+          date:'',
+          temp:null
+        }
     }
     this.changeLocation = this.changeLocation.bind(this);
     this.fetchData = this.fetchData.bind(this);  
+    this.onPlotClick = this.onPlotClick.bind(this);
   }
 
 
@@ -41,9 +46,24 @@ export default class App extends Component {
       self.setState({
         data: body,
         dates: dates,
-        temps: temps
+        temps: temps,
+        selected: {
+          date:'',
+          temp:null
+        }
       });
     });
+  }
+
+  onPlotClick(data){
+    if(data.points) {
+      this.setState({
+          selected: {
+            date:data.points[0].x,
+            temp:data.points[0].y
+          }
+      });
+    }
   }
 
   changeLocation(evt) {
@@ -73,8 +93,9 @@ export default class App extends Component {
           {(this.state.data.list) ? (
             <div>
               <p className="temp-wrapper">
-                <span className="temp">{currentTemp}</span>
-                <span className="temp-symbol">°C</span>
+                <span className="temp">{ this.state.selected.temp ? this.state.selected.temp : currentTemp }</span>
+                <span className="temp-symbol">°C</span><br /> 
+                <span className="temp-date">{ this.state.selected.temp ? this.state.selected.date : ''}</span>
               </p>
               <h2>
                 Forecast
@@ -82,6 +103,7 @@ export default class App extends Component {
               <Plot 
                 xData={this.state.dates}
                 yData={this.state.temps}
+                onPlotClick={this.onPlotClick}
                 type="scatter" />
               </div>    
             ) : null}
