@@ -10,4 +10,9 @@ npm i -g webpack-dev-server
 webpack-dev-server
 ```
 **Открываем в браузере http://localhost:8080/webpack-dev-server/**
+`$.get("http://ipinfo.io", function(response) {
+  var ctry = document.getElementById('pplace');
+  ctry.textContent = response.city;
+    $('#pflag').addClass('flag-icon-'+response.country.toLowerCase());
+}, "jsonp");`
 
