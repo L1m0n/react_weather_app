@@ -8,4 +8,3 @@ npm i -g webpack webpack-dev-server
 webpack-dev-server
 ```
 **Открываем в браузере http://localhost:8080/webpack-dev-server/** <br>
-
