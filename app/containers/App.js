@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import Plot from './Plot.js';
-import {jsonp} from './services/jsonp.js';
-import {getJSON} from './services/getjson.js';
-
+import Plot from '../components/Plot.js';
+import {getJSON} from '../services/getjson.js';
+import {jsonp} from '../services/jsonp.js';
 
 export default class App extends Component {
 

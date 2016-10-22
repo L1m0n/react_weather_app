@@ -4,15 +4,8 @@
 **Переходим в директорию со стянутой репой и:** <br>
 ```
 npm i
-npm i xhr
-npm i -g webpack
-npm i -g webpack-dev-server
+npm i -g webpack webpack-dev-server
 webpack-dev-server
 ```
 **Открываем в браузере http://localhost:8080/webpack-dev-server/** <br>
-`$.get("http://ipinfo.io", function(response) {
-  var ctry = document.getElementById('pplace');
-  ctry.textContent = response.city;
-    $('#pflag').addClass('flag-icon-'+response.country.toLowerCase());
-}, "jsonp");`
 

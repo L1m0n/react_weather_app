@@ -21449,9 +21449,9 @@
 
 	var _Plot2 = _interopRequireDefault(_Plot);
 
-	var _jsonp = __webpack_require__(174);
+	var _getjson = __webpack_require__(174);
 
-	var _getjson = __webpack_require__(175);
+	var _jsonp = __webpack_require__(175);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21570,7 +21570,7 @@
 	        'div',
 	        { className: 'App' },
 	        _react2.default.createElement(
-	          'h2',
+	          'h1',
 	          null,
 	          'Weather app'
 	        ),
@@ -21720,6 +21720,33 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.getJSON = getJSON;
+	function getJSON(url) {
+	  return new Promise(function (resolve, reject) {
+	    var xhr = new XMLHttpRequest();
+	    xhr.open('get', url, true);
+	    xhr.responseType = 'json';
+	    xhr.onload = function () {
+	      var status = xhr.status;
+	      if (status == 200) {
+	        resolve(xhr.response);
+	      } else {
+	        reject(status);
+	      }
+	    };
+	    xhr.send();
+	  });
+	};
+
+/***/ },
+/* 175 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	exports.jsonp = jsonp;
@@ -21745,33 +21772,6 @@
 	    script.src = src;
 
 	    document.getElementsByTagName('head')[0].appendChild(script);
-	};
-
-/***/ },
-/* 175 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.getJSON = getJSON;
-	function getJSON(url) {
-	  return new Promise(function (resolve, reject) {
-	    var xhr = new XMLHttpRequest();
-	    xhr.open('get', url, true);
-	    xhr.responseType = 'json';
-	    xhr.onload = function () {
-	      var status = xhr.status;
-	      if (status == 200) {
-	        resolve(xhr.response);
-	      } else {
-	        reject(status);
-	      }
-	    };
-	    xhr.send();
-	  });
 	};
 
 /***/ }
