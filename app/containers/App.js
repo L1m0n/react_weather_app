@@ -3,6 +3,7 @@ import Plot from '../components/Plot.js';
 import {getJSON} from '../services/getjson.js';
 import {jsonp} from '../services/jsonp.js';
 
+require('./App.scss');
 export default class App extends Component {
 
   constructor(props) {
