@@ -35,7 +35,12 @@ export default class Plot extends Component {
 
 	render() {
 		return (
-			<div id="plot"></div>
+			<div>
+				<h2>
+	               Forecast
+		        </h2>
+				<div id="plot"></div>
+			</div>
 		);
 	}
 }

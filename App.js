@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import xhr from 'xhr';
 import Plot from './Plot.js';
+import {jsonp} from './services/jsonp.js';
+import {getJSON} from './services/getjson.js';
+
 
 export default class App extends Component {
 
@@ -23,28 +25,45 @@ export default class App extends Component {
     this.onPlotClick = this.onPlotClick.bind(this);
   }
 
+  componentWillMount() {
+    var self = this;
+    jsonp('http://ipinfo.io?callback=handleStuff', {
+        callbackName: 'handleStuff',
+        onSuccess: function(json){
+          self.setState({
+            location:json.city
+          });
+        }
+    });   
+  }
+
+  componentDidMount(){
+    var self = this;
+    setTimeout(function() {
+      self.fetchData(); 
+    },500)
+  }
 
   fetchData(evt){
-    evt.preventDefault();
+    if (evt) evt.preventDefault(); 
     var location = encodeURIComponent(this.state.location);
-    var urlPrefix = 'http://api.openweathermap.org/data/2.5/forecast?q=';
+    var urlPrefix = 'http://api.openweathermap.org/data/2.5/forecast?callbackName=handleStuff&q=';
     var urlSuffix = '&APPID=e72e82ac63de6dfdf0654ba239864bfa&units=metric';
     var url = urlPrefix + location + urlSuffix;
     var self = this;
-    xhr({
-      url:url
-    }, function(err, data){
-      var body = JSON.parse(data.body);
-      var list = body.list;
+
+    getJSON(url).then(function(data) {
+      var list = data.list;
       var dates = [];
       var temps =[];
+
       for (var i = 0; i < list.length; i++) {
         dates.push(list[i].dt_txt);
         temps.push(list[i].main.temp);
       }
 
       self.setState({
-        data: body,
+        data: data,
         dates: dates,
         temps: temps,
         selected: {
@@ -52,6 +71,9 @@ export default class App extends Component {
           temp:null
         }
       });
+
+    }, function(status) { 
+      alert('Something went wrong.');
     });
   }
 
@@ -67,6 +89,7 @@ export default class App extends Component {
   }
 
   changeLocation(evt) {
+    var self = this;
     this.setState({
       location: evt.target.value
     });
@@ -79,7 +102,7 @@ export default class App extends Component {
     }
     return (
       <div className="App">
-          <h2>Weather app</h2>
+          <h1>Weather app</h1>
           <form onSubmit={this.fetchData}>
             <label>I want to know the weather for <br />
               <input 
@@ -97,9 +120,6 @@ export default class App extends Component {
                 <span className="temp-symbol">°C</span><br /> 
                 <span className="temp-date">{ this.state.selected.temp ? this.state.selected.date : ''}</span>
               </p>
-              <h2>
-                Forecast
-              </h2>
               <Plot 
                 xData={this.state.dates}
                 yData={this.state.temps}
