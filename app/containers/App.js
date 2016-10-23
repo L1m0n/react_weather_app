@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Plot from '../components/Plot.js';
 import {getJSON} from '../services/getjson.js';
 import {jsonp} from '../services/jsonp.js';
@@ -89,10 +90,7 @@ export default class App extends Component {
   }
 
   changeLocation(evt) {
-    var self = this;
-    this.setState({
-      location: evt.target.value
-    });
+    this.props.dispatch(changeLocation(evt.target.value);
   }
 
   render() {
