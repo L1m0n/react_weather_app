@@ -1,0 +1,36 @@
+
+body {
+	overflow-x: hidden;
+	min-width: 320px;
+}
+
+.pp {
+	width: 100%;
+	position: absolute;
+	top: 0px;
+	opacity: 0.6;
+	display: none;
+	z-index: 55;
+	img {
+		display: block;
+		position: absolute;
+		left: 50%;
+		transform:translate(-50%, 0);
+		width: 100%;
+		max-width: 1200px;
+	}
+	&.visible {
+		display: block;
+	}
+}
+.site-wrapper {
+	max-width: 1008px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 14px;
+}
+.clear-fix:after {
+  content:"";
+  display:table;
+  clear:both;
+}

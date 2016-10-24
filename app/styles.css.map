@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///webpack:///app/containers/app/containers/App.scss"],"names":[],"mappings":"AAAA;EACC,iBAAiB;EACjB,YAAY;EACZ,eAAe,EACf","file":"styles.css","sourcesContent":["#root {\r\n\tmax-width: 920px;\r\n\twidth: 100%;\r\n\tmargin: 0 auto;\r\n}\n\n\n/** WEBPACK FOOTER **\n ** webpack:///app/containers/app/containers/App.scss\n **/"],"sourceRoot":""}
